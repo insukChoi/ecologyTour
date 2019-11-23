@@ -1,6 +1,9 @@
 package com.insuk.ecologytour.web.error;
 
+import com.insuk.ecologytour.domain.exception.InvalidCredentialsException;
 import com.insuk.ecologytour.domain.exception.NotFoundTourIdException;
+import com.insuk.ecologytour.domain.exception.UnauthorizedException;
+import com.insuk.ecologytour.domain.exception.UserDisabledException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -21,4 +24,10 @@ public class RestResponseExceptionHandler extends ResponseEntityExceptionHandler
         return handleExceptionInternal(ex, res, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
     }
 
+    @ExceptionHandler({ UnauthorizedException.class , UserDisabledException.class, InvalidCredentialsException.class})
+    public ResponseEntity<Object> handleUnauthorizedException(final RuntimeException ex, final WebRequest request){
+        log.error("UnauthorizedException", ex);
+        final ErrorResponse res = new ErrorResponse(ex.getMessage(), "Unauthorized Exception");
+        return handleExceptionInternal(ex, res, new HttpHeaders(), HttpStatus.UNAUTHORIZED, request);
+    }
 }

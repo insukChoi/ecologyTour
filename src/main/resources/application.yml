@@ -24,3 +24,11 @@ api:
     theme: 10
     explain: 8
     detailExplain: 5
+
+# jwt 관련
+jwt:
+  secret: tourservice
+  ttl: 3600000
+
+refresh:
+  ttl: 43200000
