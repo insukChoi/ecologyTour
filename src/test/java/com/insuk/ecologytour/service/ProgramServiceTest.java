@@ -13,10 +13,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.Optional;
-
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -47,8 +45,6 @@ public class ProgramServiceTest {
                 new Program(ConstUtil.PROGRAM_CODE_PREFIX + StringUtil.getUUIDNumber(),
                         programName)
         );
-
         assertThat(savedProgram.getProgramName(), is(programName));
     }
-
 }

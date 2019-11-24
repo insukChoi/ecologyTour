@@ -66,7 +66,7 @@ public class TourService {
         return tourRepository.save(tour);
     }
 
-    public List<Tour> getourByRegionCode(RegionCodeReq regionCodeReq){
+    public List<Tour> getTourByRegionCode(RegionCodeReq regionCodeReq){
         return regionService.getRegion(regionCodeReq).getTourList();
     }
 

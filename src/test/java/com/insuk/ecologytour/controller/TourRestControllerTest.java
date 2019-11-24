@@ -7,9 +7,11 @@ import com.insuk.ecologytour.web.request.RegionCodeReq;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -23,7 +25,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(TourRestController.class)
+@SpringBootTest
+@AutoConfigureMockMvc
 public class TourRestControllerTest {
 
     @Autowired
@@ -32,6 +35,7 @@ public class TourRestControllerTest {
     @MockBean
     private TourService tourService;
 
+    @WithMockUser
     @Test
     public void 생태_관광정보_데이터_조회_API_테스트() throws Exception{
         Tour tour = new Tour();
@@ -44,7 +48,7 @@ public class TourRestControllerTest {
 
         List<Tour> tourList = Collections.singletonList(tour);
 
-        when(tourService.getourByRegionCode(any(RegionCodeReq.class)))
+        when(tourService.getTourByRegionCode(any(RegionCodeReq.class)))
                 .thenReturn(tourList);
 
         mvc.perform(get("/ecologyTour/v1/search/v1")
