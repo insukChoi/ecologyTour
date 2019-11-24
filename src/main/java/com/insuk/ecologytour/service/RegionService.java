@@ -54,12 +54,12 @@ public class RegionService {
 
     /**
      * Region (서비스 지역) String 을 스페이스로 구분하여 파싱
-     * @param region
+     * @param regions
      * @return List<Region>
      */
-    private List<Region> regionParser(String region){
+    private List<Region> regionParser(String regions){
         List<Region> regionList = new ArrayList<>();
-        String[] arr = region.split(" ");
+        String[] arr = regions.split(" ");
         Matcher matcher;
         for (String s : arr){
             matcher = regionRegex.matcher(s);
