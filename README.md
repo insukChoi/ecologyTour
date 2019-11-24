@@ -36,12 +36,18 @@ mvn clean test spring-boot:run 또는 ./mvnw clean test spring-boot:run
      
 2. API 설계
     (HTTP Methods for RESTful 구현)
-    1. 파일 업로드 API : opencsv 라이브러리를 사용하여, csv 파일 업로드 구현. 업로드시 '서비스 지역' 레코드의 경우는 ' ' 로 split 하여 length 만큼 각각 Region 엔티티에 등록.
-    2. 등록/수정/조회 API : 각 엔티티별 연관관계에 초점을 두고 개발.
-    3. 특정 지역에서 진행되는 프로그램명과 테마 출력 API : 프로그램명과 테마만을 프로퍼티로 가지고 있는 ProgramDto 를 두어 객체 메세지 전달 방법 사용/
-    4. '프로그램 소개' 레코드에서 특정 문자열이 포함된 서비스 지역 개수 API : 입력 된 keyword로 Tour엔티티 like 검색 후, 데이터 가공을 위해 Collectors.groupingBy 로 서비스 지역 갯수를 구현.
-    5. 모든 레코드의 프로그램 상세 정보에서 입력 단어의 출현빈도수 API : 입력 된 keyword로 Tour엔티티 like 검색 후, 출현빈도수를 구하기 위하여 Stream 과 SpringFramework의 StringUtils 사용.
-    6. 생태관광 프로그램 추천 API : 가중치를 properties(yml) 로 분리 및 가중치를 계산하는 로직을 RecommendationPrgDto 객체 안으로 추상화하고, 서비스에서는 Stream의 최종연산으로 제일 높은 가중치의 프로그램 1개를 추천함.
+    1. 파일 업로드 API 
+        - opencsv 라이브러리를 사용하여, csv 파일 업로드 구현. 업로드시 '서비스 지역' 레코드의 경우는 ' ' 로 split 하여 length 만큼 각각 Region 엔티티에 등록.
+    2. 등록/수정/조회 API
+        - 각 엔티티별 연관관계에 초점을 두고 개발.
+    3. 특정 지역에서 진행되는 프로그램명과 테마 출력 API
+        - 프로그램명과 테마를 속성으로 가지고 있는 ProgramDto 를 두어 객체 메세지 전달 방법 사용
+    4. '프로그램 소개' 레코드에서 특정 문자열이 포함된 서비스 지역 개수 API
+        - 입력 된 keyword로 Tour엔티티 like 검색 후, 데이터 가공을 위해 Collectors.groupingBy 로 서비스 지역 갯수를 구현.
+    5. 모든 레코드의 프로그램 상세 정보에서 입력 단어의 출현빈도수 API
+        - 입력 된 keyword로 Tour엔티티 like 검색 후, 출현빈도수를 구하기 위하여 Stream 과 SpringFramework의 StringUtils 사용.
+    6. 생태관광 프로그램 추천 API
+        - 가중치를 properties(yml) 로 분리 및 가중치를 계산하는 로직을 RecommendationPrgDto 객체 안으로 추상화하고, 서비스에서는 Stream의 최종연산으로 제일 높은 가중치의 프로그램 1개를 추천함.
 
 3. JWT + Security
    - signin, signup API를 통해 token 발급시, access_token 과 refresh_token 발급.
