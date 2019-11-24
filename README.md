@@ -2,8 +2,6 @@
 ==========================
 
 ## 빌드 및 실행 방법
-- Execute jar 다운로드 
-
 ```
 git clone https://github.com/insukChoi/ecologyTour.git
 cd ecologyTour
